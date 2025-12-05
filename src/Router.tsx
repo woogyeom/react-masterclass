@@ -8,7 +8,7 @@ interface ToggleThemeProps {
 
 function Router({ toggleTheme }: ToggleThemeProps) {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Switch>
 				<Route path="/:coinId">
 					<Coin toggleTheme={toggleTheme} />

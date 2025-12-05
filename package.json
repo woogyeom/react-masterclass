@@ -1,56 +1,61 @@
 {
-  "name": "react-masterclass",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@tanstack/react-query": "^5.90.12",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "apexcharts": "^5.3.6",
-    "gh-pages": "^6.3.0",
-    "react": "^19.2.0",
-    "react-apexcharts": "^1.9.0",
-    "react-dom": "^19.2.0",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^5.3.3",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^6.1.19",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.91.1",
-    "@types/react-helmet": "^6.1.11",
-    "@types/react-router-dom": "^5.3.3",
-    "typescript": "^4.9.5"
-  }
+	"name": "react-masterclass",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@tanstack/react-query": "^5.90.12",
+		"@testing-library/dom": "^10.4.1",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.0",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^24.10.1",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"apexcharts": "^5.3.6",
+		"gh-pages": "^6.3.0",
+		"react": "^19.2.0",
+		"react-apexcharts": "^1.9.0",
+		"react-dom": "^19.2.0",
+		"react-helmet": "^6.1.0",
+		"react-router-dom": "^5.3.3",
+		"react-scripts": "^5.0.1",
+		"styled-components": "^6.1.19",
+		"web-vitals": "^2.1.4"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"postbuild": "shx cp build/index.html build/404.html",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"deploy": "gh-pages -d build",
+		"predeploy": "npm run build"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@tanstack/react-query-devtools": "^5.91.1",
+		"@types/react-helmet": "^6.1.11",
+		"@types/react-router-dom": "^5.3.3",
+		"typescript": "^4.9.5"
+	},
+	"homepage": "https://woogyeom.github.io/react-masterclass",
+	"license": "MIT"
 }

@@ -88,7 +88,7 @@ function Price() {
 		enabled: shouldFetch,
 	});
 
-	const priceData = state.tickersData || data;
+	const priceData = state?.tickersData || data;
 
 	return isLoading ? (
 		<h1>Loading...</h1>
