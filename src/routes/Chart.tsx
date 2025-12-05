@@ -34,6 +34,7 @@ function Chart({ coinId }: ChartProps) {
 			{isLoading ? (
 				"Loading..."
 			) : (
+				
 				<ApexChart
 					type="candlestick"
 					series={[

@@ -7,7 +7,11 @@ import {
 	useParams,
 	useRouteMatch,
 } from "react-router-dom";
-import styled, { ThemeConsumer, ThemeContext, useTheme } from "styled-components";
+import styled, {
+	ThemeConsumer,
+	ThemeContext,
+	useTheme,
+} from "styled-components";
 import Chart from "./Chart.tsx";
 import Price from "./Price.tsx";
 import { useQuery } from "@tanstack/react-query";
@@ -82,7 +86,7 @@ const OverviewItem = styled.div`
 	align-items: center;
 
 	span:first-child {
-		font-size: 12px;
+		font-size: 10px;
 		font-weight: 400;
 		text-transform: uppercase;
 		margin-bottom: 5px;
@@ -219,7 +223,9 @@ function Coin({ toggleTheme }: ToggleThemeProps) {
 				<Title>
 					{state?.name ? state.name : loading ? "Loading..." : infoData?.name}
 				</Title>
-				<ToggleThemeButton onClick={toggleTheme}>{theme.name === "dark" ? "\u{26aa}" : "\u{26ab}"}</ToggleThemeButton>
+				<ToggleThemeButton onClick={toggleTheme}>
+					{theme.name === "dark" ? "\u{26aa}" : "\u{26ab}"}
+				</ToggleThemeButton>
 			</Header>
 			{loading ? (
 				<Loader>Loading...</Loader>
@@ -256,7 +262,9 @@ function Coin({ toggleTheme }: ToggleThemeProps) {
 							<Link to={`/${coinId}/chart`}>Chart</Link>
 						</Tab>
 						<Tab $isActive={priceMatch !== null}>
-							<Link to={{pathname: `/${coinId}/price`, state: { data: tickersData },}}>Price</Link>
+							<Link to={{ pathname: `/${coinId}/price`, state: tickersData }}>
+								Price
+							</Link>
 						</Tab>
 					</Tabs>
 
