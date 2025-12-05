@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/react-masterclass/static/js/main.5deacb1e.js",
+    "main.js": "/react-masterclass/static/js/main.512ba91f.js",
     "index.html": "/react-masterclass/index.html",
-    "main.5deacb1e.js.map": "/react-masterclass/static/js/main.5deacb1e.js.map"
+    "main.512ba91f.js.map": "/react-masterclass/static/js/main.512ba91f.js.map"
   },
   "entrypoints": [
-    "static/js/main.5deacb1e.js"
+    "static/js/main.512ba91f.js"
   ]
 }
