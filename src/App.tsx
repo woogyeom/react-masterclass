@@ -2,7 +2,8 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router.tsx";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { darkTheme, lightTheme } from "./theme.ts";
-import { useState } from "react";
+import { isDarkAtom } from "./atoms.ts";
+import { useAtom, useAtomValue } from "jotai";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -67,16 +68,13 @@ const GlobalStyle = createGlobalStyle`
   `;
 
 function App() {
-  const [theme, setTheme] = useState('dark');
-  const toggleTheme = () => {
-    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
-  };
+  const isDark = useAtomValue(isDarkAtom);
 
 	return (
 		<>
-			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+			<ThemeProvider theme={isDark ? darkTheme : lightTheme}>
 				<GlobalStyle />
-				<Router toggleTheme={toggleTheme} />
+				<Router/>
 				<ReactQueryDevtools initialIsOpen={true} />
 			</ThemeProvider>
 		</>

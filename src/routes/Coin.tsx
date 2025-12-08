@@ -1,4 +1,3 @@
-import { useContext, useEffect, useState } from "react";
 import {
 	Link,
 	Route,
@@ -7,17 +6,14 @@ import {
 	useParams,
 	useRouteMatch,
 } from "react-router-dom";
-import styled, {
-	ThemeConsumer,
-	ThemeContext,
-	useTheme,
-} from "styled-components";
+import styled from "styled-components";
 import Chart from "./Chart.tsx";
 import Price from "./Price.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinIfo, fetchCoinTickers } from "../api.ts";
 import { Helmet } from "react-helmet";
-import { DefaultTheme } from "styled-components/dist/types";
+import { isDarkAtom } from "../atoms.ts";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 const Container = styled.div`
 	padding: 0px 20px;
@@ -184,11 +180,11 @@ interface PriceData {
 	};
 }
 
-interface ToggleThemeProps {
-	toggleTheme: () => void;
+interface ICoinProps {
+
 }
 
-function Coin({ toggleTheme }: ToggleThemeProps) {
+function Coin({}: ICoinProps) {
 	const { coinId } = useParams<RouteParams>();
 	const { state } = useLocation<RouteState>();
 	const chartMatch = useRouteMatch("/:coinId/chart");
@@ -207,7 +203,8 @@ function Coin({ toggleTheme }: ToggleThemeProps) {
 
 	const loading = infoLoading || tickersLoading;
 
-	const theme = useTheme();
+	const setterFn = useSetAtom(isDarkAtom);
+	const toggleDarkAtom = () => setterFn((prev) => !prev);
 
 	return (
 		<Container>
@@ -223,8 +220,8 @@ function Coin({ toggleTheme }: ToggleThemeProps) {
 				<Title>
 					{state?.name ? state.name : loading ? "Loading..." : infoData?.name}
 				</Title>
-				<ToggleThemeButton onClick={toggleTheme}>
-					{theme.name === "dark" ? "\u{26aa}" : "\u{26ab}"}
+				<ToggleThemeButton onClick={toggleDarkAtom}>
+					{useAtomValue(isDarkAtom) ? "\u{26aa}" : "\u{26ab}"}
 				</ToggleThemeButton>
 			</Header>
 			{loading ? (

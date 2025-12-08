@@ -24,8 +24,6 @@ function Chart({ coinId }: ChartProps) {
 		queryKey: ["ohcvl", coinId],
 		queryFn: () => fetchCoinHistory(coinId),
 		refetchInterval: 5 * 60 * 1000,
-		retry: 3,
-		retryDelay: 1000,
 	});
 	const theme = useTheme();
 

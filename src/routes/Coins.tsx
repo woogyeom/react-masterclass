@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import { fetchCoins } from "../api.ts";
 import { Helmet } from "react-helmet";
+import { isDarkAtom } from "../atoms.ts";
+import { useAtomValue, useSetAtom } from "jotai";
 
 const Container = styled.div`
 	padding: 0px 20px;
@@ -91,17 +92,18 @@ interface ICoin {
 	type: string;
 }
 
-interface ToggleThemeProps {
-	toggleTheme: () => void;
+interface ICoinsProps {
+
 }
 
-function Coins({ toggleTheme }: ToggleThemeProps) {
+function Coins({  }: ICoinsProps) {
 	const { isLoading, data } = useQuery<ICoin[]>({
 		queryKey: ["allCoins"],
 		queryFn: fetchCoins,
 	});
 
-	const theme = useTheme();
+	const setterFn = useSetAtom(isDarkAtom);
+	const toggleDarkAtom = () => setterFn((prev) => !prev);
 
 	return (
 		<Container>
@@ -113,8 +115,8 @@ function Coins({ toggleTheme }: ToggleThemeProps) {
 					<Link to="/">🏠</Link>
 				</HomeButton>
 				<Title>Top 100 Crypto</Title>
-				<ToggleThemeButton onClick={toggleTheme}>
-					{theme.name === "dark" ? "\u{26aa}" : "\u{26ab}"}
+				<ToggleThemeButton onClick={toggleDarkAtom}>
+					{useAtomValue(isDarkAtom) ? "\u{26aa}" : "\u{26ab}"}
 				</ToggleThemeButton>
 			</Header>
 			{isLoading ? (
